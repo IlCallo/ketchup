@@ -30,6 +30,7 @@ export const config: Config = {
             injectGlobalPaths: [
                 'src/style/_variables.scss',
                 'src/style/_generic-style.scss',
+                'src/materialize/sass/materialize.scss',
                 'src/style/global.scss',
             ],
         }),

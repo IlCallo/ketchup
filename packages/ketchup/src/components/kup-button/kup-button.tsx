@@ -1,4 +1,11 @@
-import { Component, Element, Event, EventEmitter, Prop, h } from '@stencil/core';
+import {
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    Prop,
+    h,
+} from '@stencil/core';
 
 @Component({
     tag: 'kup-button',
@@ -47,7 +54,7 @@ export class KupButton {
             this.showtext &&
             this.label
         ) {
-            btnLabel = <span class="button-text">{this.label}</span>;
+            btnLabel = this.label;
         }
 
         let icon = null;
@@ -55,9 +62,9 @@ export class KupButton {
             icon = <span class={'button-icon ' + this.iconClass} />;
         }
 
-        let btnClass = '';
+        let btnClass = 'btn waves-effect waves-light';
         if (this.flat) {
-            btnClass = 'flat-btn';
+            btnClass += 'flat-btn';
         } else {
             if (this.buttonClass) {
                 btnClass += this.buttonClass;
@@ -93,15 +100,15 @@ export class KupButton {
 
         return [
             <link href={this.iconUrl} rel="stylesheet" type="text/css" />,
-            <button
-                type="button"
+            <script src="/assets/materialize.min.js">M.AutoInit();</script>,
+            <a
                 class={btnClass}
                 title={title}
                 onClick={() => this.onBtnClickedHandler()}
             >
                 {icon}
                 {btnLabel}
-            </button>,
+            </a>,
         ];
     }
 }
