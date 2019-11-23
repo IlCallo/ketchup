@@ -16,6 +16,11 @@ Vue.use(Router);
 // TODO when these simple routes gets too many, move them to their own file inside the router folder.
 let simpleRoutes = [
   {
+    path: `/mwc`,
+    name: 'mwc',
+    component: () => import(`@/views/MWC.vue`),
+  },
+  {
     path: `/kup-btn`,
     name: 'btn',
     component: () => import(`@/views/KupBottoniera.vue`),

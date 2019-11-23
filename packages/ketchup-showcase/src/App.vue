@@ -412,6 +412,12 @@ export default {
     ],
     simpleRoutes: [
       {
+        title: `MWC`,
+        to: {
+          name: 'mwc',
+        },
+      },
+      {
         title: `Buttons`,
         to: {
           name: 'btn',

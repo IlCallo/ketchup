@@ -700,6 +700,7 @@ export namespace Components {
     'backgroundcolor': string;
     'color': colorType;
     'compact': boolean;
+    'cstyle': object;
     'dense': boolean;
     'disabled': boolean;
     'fab': boolean;
@@ -709,6 +710,7 @@ export namespace Components {
     'raised': boolean;
     'ripple': boolean;
     'stroked': boolean;
+    'theme': object;
     'unelevated': boolean;
   }
   interface MwcTheme {
@@ -1755,6 +1757,7 @@ declare namespace LocalJSX {
     'backgroundcolor'?: string;
     'color'?: colorType;
     'compact'?: boolean;
+    'cstyle'?: object;
     'dense'?: boolean;
     'disabled'?: boolean;
     'fab'?: boolean;
@@ -1764,6 +1767,7 @@ declare namespace LocalJSX {
     'raised'?: boolean;
     'ripple'?: boolean;
     'stroked'?: boolean;
+    'theme'?: object;
     'unelevated'?: boolean;
   }
   interface MwcTheme extends JSXBase.HTMLAttributes<HTMLMwcThemeElement> {
