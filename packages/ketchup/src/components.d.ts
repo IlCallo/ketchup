@@ -82,6 +82,9 @@ import {
 import {
   UploadProps,
 } from './components/kup-upload/kup-upload-declarations';
+import {
+  colorType,
+} from './components/button/mwc-button-types';
 
 export namespace Components {
   interface KupBadge {
@@ -693,6 +696,26 @@ export namespace Components {
   interface KupUpload {
     'typeOptions': UploadProps;
   }
+  interface MwcButton {
+    'backgroundcolor': string;
+    'color': colorType;
+    'compact': boolean;
+    'dense': boolean;
+    'disabled': boolean;
+    'fab': boolean;
+    'href': string;
+    'icon': string;
+    'mini': boolean;
+    'raised': boolean;
+    'ripple': boolean;
+    'stroked': boolean;
+    'unelevated': boolean;
+  }
+  interface MwcTheme {
+    'fonts': Array<string>;
+    'icons': Array<string>;
+    'theme': object;
+  }
 }
 
 declare global {
@@ -865,6 +888,18 @@ declare global {
     prototype: HTMLKupUploadElement;
     new (): HTMLKupUploadElement;
   };
+
+  interface HTMLMwcButtonElement extends Components.MwcButton, HTMLStencilElement {}
+  var HTMLMwcButtonElement: {
+    prototype: HTMLMwcButtonElement;
+    new (): HTMLMwcButtonElement;
+  };
+
+  interface HTMLMwcThemeElement extends Components.MwcTheme, HTMLStencilElement {}
+  var HTMLMwcThemeElement: {
+    prototype: HTMLMwcThemeElement;
+    new (): HTMLMwcThemeElement;
+  };
   interface HTMLElementTagNameMap {
     'kup-badge': HTMLKupBadgeElement;
     'kup-box': HTMLKupBoxElement;
@@ -894,6 +929,8 @@ declare global {
     'kup-tooltip': HTMLKupTooltipElement;
     'kup-tree': HTMLKupTreeElement;
     'kup-upload': HTMLKupUploadElement;
+    'mwc-button': HTMLMwcButtonElement;
+    'mwc-theme': HTMLMwcThemeElement;
   }
 }
 
@@ -1714,6 +1751,26 @@ declare namespace LocalJSX {
     'onKetchupFileUploaded'?: (event: CustomEvent<any>) => void;
     'typeOptions'?: UploadProps;
   }
+  interface MwcButton extends JSXBase.HTMLAttributes<HTMLMwcButtonElement> {
+    'backgroundcolor'?: string;
+    'color'?: colorType;
+    'compact'?: boolean;
+    'dense'?: boolean;
+    'disabled'?: boolean;
+    'fab'?: boolean;
+    'href'?: string;
+    'icon'?: string;
+    'mini'?: boolean;
+    'raised'?: boolean;
+    'ripple'?: boolean;
+    'stroked'?: boolean;
+    'unelevated'?: boolean;
+  }
+  interface MwcTheme extends JSXBase.HTMLAttributes<HTMLMwcThemeElement> {
+    'fonts'?: Array<string>;
+    'icons'?: Array<string>;
+    'theme'?: object;
+  }
 
   interface IntrinsicElements {
     'kup-badge': KupBadge;
@@ -1744,6 +1801,8 @@ declare namespace LocalJSX {
     'kup-tooltip': KupTooltip;
     'kup-tree': KupTree;
     'kup-upload': KupUpload;
+    'mwc-button': MwcButton;
+    'mwc-theme': MwcTheme;
   }
 }
 
