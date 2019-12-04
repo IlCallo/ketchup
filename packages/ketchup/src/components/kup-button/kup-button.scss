@@ -1,3 +1,12 @@
+// theme support -- example
+
+$mdc-theme-primary: #26418f;
+$mdc-theme-secondary: #d1c4e9;
+$mdc-theme-background: #fdf6f9;
+
+@import "@material/button/mdc-button";
+
+
 :host {
   /* CSS vars
    * https://stackoverflow.com/questions/41950834/buttons-not-inheriting-parent-div-font-size
@@ -202,4 +211,11 @@ button {
   &.fillspace {
     width: 100%;
   }
+}
+
+.mdc-button {
+
+  @include mdc-button-ink-color(#fff);
+  @include mdc-states(#fff);
+
 }

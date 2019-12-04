@@ -6,6 +6,7 @@ import {
     Prop,
     h,
 } from '@stencil/core';
+import { MDCRipple } from '@material/ripple/index';
 
 @Component({
     tag: 'kup-button',
@@ -46,6 +47,10 @@ export class KupButton {
         this.kupButtonClicked.emit({ id: this.ketchupButtonEl.dataset.id });
     }
 
+    componentDidLoad() {
+        MDCRipple.attachTo(this.ketchupButtonEl.shadowRoot.querySelector("button"));
+    }
+
     _isHint() {
         return 'Hint' === this.textmode;
     }
@@ -72,36 +77,36 @@ export class KupButton {
 
         let btnStyle = this.buttonStyle;
 
-        let btnClass = '';
-        if (this.flat) {
-            btnClass = 'flat-btn';
-        } else {
-            if (this.buttonClass) {
-                btnClass += this.buttonClass;
-            }
+        let btnClass = 'mdc-button mdc-button--raised';
+        // if (this.flat) {
+        //     btnClass = 'flat-btn';
+        // } else {
+        //     if (this.buttonClass) {
+        //         btnClass += this.buttonClass;
+        //     }
 
-            if (this.rounded) {
-                btnClass += ' rounded';
-            }
+        //     if (this.rounded) {
+        //         btnClass += ' rounded';
+        //     }
 
-            if (this.transparent) {
-                btnClass += ' transparent';
-            }
-        }
+        //     if (this.transparent) {
+        //         btnClass += ' transparent';
+        //     }
+        // }
 
-        if (this.fillspace) {
-            btnClass += ' fillspace';
-        }
+        // if (this.fillspace) {
+        //     btnClass += ' fillspace';
+        // }
 
-        if (this.align) {
-            if ('right' === this.align) {
-                btnClass += ' align-right';
-            } else if ('left' === this.align) {
-                btnClass += ' align-left';
-            }
-        }
+        // if (this.align) {
+        //     if ('right' === this.align) {
+        //         btnClass += ' align-right';
+        //     } else if ('left' === this.align) {
+        //         btnClass += ' align-left';
+        //     }
+        // }
 
-        btnClass = btnClass.trim();
+        // btnClass = btnClass.trim();
 
         let title = '';
         if (this.tooltip) {
@@ -119,6 +124,7 @@ export class KupButton {
                 title={title}
                 onClick={() => this.onBtnClickedHandler()}
             >
+                <div class="mdc-button__ripple"></div>
                 {image}
                 {icon}
                 {btnLabel}
