@@ -1,34 +1,29 @@
 /**
-* @prop --checkbox_border-color, --kup-checkbox_border-color: Sets color of the border when checkbox is NOT disabled.
-* @prop --checkbox_border-color-disabled, --kup-checkbox_border-color-disabled: Sets color of the border when checkbox IS disabled.
 * @prop --checkbox_background-color, --kup-checkbox_background-color: Sets the background color of the checkbox
-* @prop --checkbox_size, --kup-checkbox_size: Sets the component size; all other sizes are scaled automatically.
 * @prop --checkbox_tick-color, --kup-checkbox_tick-color: Sets color of the tick of the checkbox.
-* @prop --checkbox_tick-color-disabled, --kup-checkbox_tick-color-disabled: Sets color of the tick of the checkbox when checkbox is disabled.
 */
 
-:host {
-  // variables
-  --checkbox_border-color: var(--kup-checkbox_border-color, #{$gray-80});
-  --checkbox_border-color-disabled: var(
-    --kup-checkbox_border-color-disabled,
-    #{lighten($gray-80, 20)}
-  );
-  --checkbox_background-color: var(--kup-checkbox_background-color, #f5f5f5);
-  --checkbox_size: var(--kup-checkbox_size, 20px);
-  --checkbox_tick-color: var(--kup-checkbox_tick-color, #{$smeup-primary});
-  --checkbox_tick-color-disabled: var(
-    --kup-checkbox_tick-color-disabled,
-    #{lighten($smeup-primary, 20)}
-  );
-
-  display: inline-block;
-}
-
-// theme support -- example
-
 $mdc-theme-secondary: $smeup-primary;
-$mdc-theme-background: #fdf6f9;
 
 @import '@material/checkbox/mdc-checkbox';
-@import "@material/form-field/mdc-form-field";
+@import '@material/form-field/mdc-form-field';
+
+:host {
+  --checkbox_background-color: var(--kup-checkbox_background-color);
+  --checkbox_tick-color: var(--kup-checkbox_tick-color);
+}
+
+.mdc-checkbox {
+  &.custom {
+    .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+    .mdc-checkbox__native-control:enabled:indeterminate
+      ~ .mdc-checkbox__background {
+      background-color: var(--checkbox_background-color);
+      border-color: var(--checkbox_background-color);
+
+      & .mdc-checkbox__checkmark {
+        color: var(--checkbox_tick-color);
+      }
+    }
+  }
+}

@@ -70,6 +70,7 @@ export class KupBtn {
                             <kup-button
                                 iconUrl={this.config.iconUrl}
                                 label={btn.value}
+                                custom={this.config.custom}
                                 iconClass={btn.iconClass}
                                 fillspace={this.config.fillspace}
                                 showtext={this.config.showtext}

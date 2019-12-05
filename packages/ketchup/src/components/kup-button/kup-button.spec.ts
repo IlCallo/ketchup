@@ -8,6 +8,7 @@ describe('kup-button', () => {
     it('button default props values', () => {
         const btn = new KupButton();
 
+        expect(btn.custom).toBeFalsy();
         expect(btn.flat).toBeFalsy();
         expect(btn.label).toBeFalsy();
         expect(btn.buttonClass).toBeFalsy();

@@ -37,6 +37,10 @@ export class KupCheckbox {
      * Sets the tabindex of the checkbox
      */
     @Prop() setTabIndex: number = 0;
+    /**
+     * Sets whether the component uses custom CSS variables or not
+     */
+    @Prop() custom: boolean = false;
 
     //---- Internal state ----
     checkbox: HTMLInputElement;
@@ -92,7 +96,9 @@ export class KupCheckbox {
             MDCCheckbox.attachTo(root.querySelector('.mdc-checkbox'));
             MDCFormField.attachTo(root.querySelector('.mdc-form-field'));
         } else {
-            console.warn(`checkbox not properly implemented: ${this.checkbox.outerHTML}`);
+            console.warn(
+                `checkbox not properly implemented: ${this.checkbox.outerHTML}`
+            );
         }
     }
 
@@ -125,13 +131,21 @@ export class KupCheckbox {
     //---- Lifecycle hooks ----
 
     render() {
+        let checkboxClass = 'mdc-checkbox ';
+
+        if (this.custom) {
+            checkboxClass += ' custom';
+        }
+
         return (
             <Host onFocus={this.onHostFocus.bind(this)}>
                 <div class="mdc-form-field">
-                    <div class="mdc-checkbox">
+                    <div class={checkboxClass}>
                         <input
                             type="checkbox"
-                            ref={(el) => (this.checkbox = el as HTMLInputElement)}
+                            ref={(el) =>
+                                (this.checkbox = el as HTMLInputElement)
+                            }
                             class="mdc-checkbox__native-control"
                             aria-label={this.label ? this.label : null}
                             checked={this.checked}
@@ -142,11 +156,15 @@ export class KupCheckbox {
                             onFocus={this.onCheckboxFocus.bind(this)}
                         />
                         <div class="mdc-checkbox__background">
-                            <svg class="mdc-checkbox__checkmark"
-                                viewBox="0 0 24 24">
-                                <path class="mdc-checkbox__checkmark-path"
+                            <svg
+                                class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    class="mdc-checkbox__checkmark-path"
                                     fill="none"
-                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                                />
                             </svg>
                             <div class="mdc-checkbox__mixedmark"></div>
                         </div>

@@ -16,6 +16,7 @@ import { MDCRipple } from '@material/ripple/index';
 export class KupButton {
     @Element() ketchupButtonEl: HTMLElement;
 
+    @Prop() custom: boolean = false;
     @Prop() flat = false;
     @Prop() label: string;
     @Prop() buttonStyle: {};
@@ -85,6 +86,10 @@ export class KupButton {
         let btnStyle = this.buttonStyle;
 
         let btnClass = 'mdc-button ' + this.buttonClass;
+
+        if (this.custom) {
+            btnClass += ' custom';
+        }
 
         if (this.transparent) {
             btnClass += ' mdc-button--outlined';
