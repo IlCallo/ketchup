@@ -28,8 +28,9 @@ export class KupButton {
     @Prop() rounded = false;
     @Prop() textmode: string;
     @Prop() transparent = false;
-    @Prop() align: string;
+    @Prop() align: string = 'left';
     @Prop() tooltip: string;
+    @Prop() disabled = false;
     @Prop() iconUrl =
         'https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css';
 
@@ -48,7 +49,9 @@ export class KupButton {
     }
 
     componentDidLoad() {
-        MDCRipple.attachTo(this.ketchupButtonEl.shadowRoot.querySelector("button"));
+        MDCRipple.attachTo(
+            this.ketchupButtonEl.shadowRoot.querySelector('button')
+        );
     }
 
     _isHint() {
@@ -72,47 +75,53 @@ export class KupButton {
 
         let icon = null;
         if (this.showicon && this.iconClass) {
-            icon = <span class={'button-icon ' + this.iconClass} />;
+            icon = (
+                <span
+                    class={'material-icons mdc-button__icon ' + this.iconClass}
+                />
+            );
         }
 
         let btnStyle = this.buttonStyle;
 
-        let btnClass = 'mdc-button mdc-button--raised';
-        // if (this.flat) {
-        //     btnClass = 'flat-btn';
-        // } else {
-        //     if (this.buttonClass) {
-        //         btnClass += this.buttonClass;
-        //     }
+        let btnClass = 'mdc-button ' + this.buttonClass;
 
-        //     if (this.rounded) {
-        //         btnClass += ' rounded';
-        //     }
+        if (this.transparent) {
+            btnClass += ' mdc-button--outlined';
+        } else if (!this.flat) {
+            btnClass += ' mdc-button--raised';
+        }
 
-        //     if (this.transparent) {
-        //         btnClass += ' transparent';
-        //     }
-        // }
+        if (this.rounded) {
+            btnClass += ' button-shaped';
+        }
 
-        // if (this.fillspace) {
-        //     btnClass += ' fillspace';
-        // }
+        if (this.fillspace) {
+            btnClass += ' fillspace';
+        }
 
-        // if (this.align) {
-        //     if ('right' === this.align) {
-        //         btnClass += ' align-right';
-        //     } else if ('left' === this.align) {
-        //         btnClass += ' align-left';
-        //     }
-        // }
-
-        // btnClass = btnClass.trim();
+        btnClass = btnClass.trim();
 
         let title = '';
         if (this.tooltip) {
             title = this.tooltip;
         } else if (this._isHint()) {
             title = this.label;
+        }
+
+        let markup1: string;
+        let markup2: string;
+
+        if (this.align) {
+            if ('right' === this.align) {
+                markup1 = btnLabel;
+                markup2 = icon;
+                btnClass += ' trailing-right';
+            } else {
+                markup1 = icon;
+                markup2 = btnLabel;
+                btnClass += ' trailing-left';
+            }
         }
 
         return [
@@ -122,12 +131,13 @@ export class KupButton {
                 style={btnStyle}
                 class={btnClass}
                 title={title}
+                disabled={this.disabled}
                 onClick={() => this.onBtnClickedHandler()}
             >
                 <div class="mdc-button__ripple"></div>
                 {image}
-                {icon}
-                {btnLabel}
+                {markup1}
+                {markup2}
             </button>,
         ];
     }

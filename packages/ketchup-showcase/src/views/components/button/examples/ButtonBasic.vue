@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>The Btn component purpose is to provide a simple and powerful way to manage many button components</p>
+    <p>The purpose of this component is to provide a simple and powerful way to manage buttons.</p>
 
     <h3>Playground</h3>
     <div class="BTN">
@@ -70,16 +70,6 @@
             name="btn-transparent"
             id="btn-transparent"
             @change="toggleBtnTransparent"
-          />
-        </div>
-
-        <div>
-          <label for="btn-bordercolor">Border color</label>
-          <input
-            type="color"
-            name="btn-bordercolor"
-            id="btn-bordercolor"
-            @change="onBorderColorChange"
           />
         </div>
 
@@ -201,7 +191,7 @@ export default {
     onKupBtnClicked(event) {
       const btnIndex = event.detail.id;
       const jsonBtn = JSON.stringify(this.btnlist[btnIndex]);
-      this.labelText = `Hai premuto sul pulsante: ${jsonBtn} ed il suo indice e' ${btnIndex}`;
+      this.labelText = `Hai premuto sul pulsante: ${jsonBtn} ed il suo indice è ${btnIndex}`;
     },
     // Input methods
     toggleBtnFillspace(event) {
@@ -254,14 +244,6 @@ export default {
       btn.config = {
         ...btn.config,
         transparent: event.target.checked,
-      };
-    },
-
-    onBorderColorChange(event) {
-      const btn = document.querySelector('kup-btn');
-      btn.config = {
-        ...btn.config,
-        borderColor: event.target.value,
       };
     },
 

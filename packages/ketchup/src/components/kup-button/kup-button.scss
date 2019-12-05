@@ -1,12 +1,3 @@
-// theme support -- example
-
-$mdc-theme-primary: #26418f;
-$mdc-theme-secondary: #d1c4e9;
-$mdc-theme-background: #fdf6f9;
-
-@import "@material/button/mdc-button";
-
-
 :host {
   /* CSS vars
    * https://stackoverflow.com/questions/41950834/buttons-not-inheriting-parent-div-font-size
@@ -14,208 +5,106 @@ $mdc-theme-background: #fdf6f9;
    * Therefore css vars are provided
    */
   /**
-   * @prop --btn_font-style, --kup-button_font-style: Sets button font style.
-   * @prop --btn_font-size, --kup-button_font-size: Sets button font size.
-   * @prop --btn_font-weight, --kup-button_font-weight: Sets the font weight of the button
+   * @prop --btn_border-radius, --kup-button_border-radius: Sets border radius of the button.
    * @prop --btn_font-family, --kup-button_font-family: sets the font family of the button
+   * @prop --btn_font-size, --kup-button_font-size: Sets button font size.
+   * @prop --btn_font-style, --kup-button_font-style: Sets button font style.
+   * @prop --btn_font-weight, --kup-button_font-weight: Sets the font weight of the button
+   * @prop --btn_icon-color, --kup-button_icon-color: Sets icon color.
    * @prop --btn_icon-size, --kup-button_icon-size: Set icon size.
    * @prop --btn_main-color, --kup-button_main-color: Sets the main color of the button.
-   * @prop --btn_main-color-hover, --kup-button_main-color-hover: Sets the main color of the button at mouse over.
-   * @prop --btn_main-color-active, --kup-button_main-color-hover: Sets the main color of the button when active.
    * @prop --btn_text-color, --kup-button_text-color: Sets color of the button text.
-   * @prop --btn_text-color--transparent, --kup-button_text-color--transparent: Sets text color when button is transparent.
-   * @prop --btn_icon-color, --kup-button_icon-color: Sets icon color.
-   * @prop --btn_icon--transparent, --kup-button_icon-color--transparent: Sets icon color when button is transparent.
-   * @prop --btn_animation-duration, --kup-button_animation-duration: Sets duration of all transitions of the component.
-   * @prop --btn_border-color, --kup-button_border-color: Sets border color of the button only when it is transparent.
-   * @prop --btn_opacity, --kup-button_opacity: Sets opacity of the button.
-   * @prop --btn_box-shadow, --kup-button_box-shadow: Sets hover box shadow of the button.
-   * @prop --btn_border, --kup-button_border: Sets border of the button.
-   * @prop --btn_border-radius, --kup-button_border-radius: Sets border radius of the button.
+   * @prop --btn_text-decoration, --kup-button_text-decoration: Sets decoration of the button text.
   */
-  --btn_font-style: var(--kup-button_font-style, 'normal');
-  --btn_font-size: var(--kup-button_font-size, 1rem);
-  --btn_font-weight: var(--kup-button_font-weight, 400);
-  --btn_font-family: var(--kup-button_font-family, inherit);
-  --btn_icon-size: var(--kup-button_icon-size, 1rem);
-  --btn_main-color: var(--kup-button_main-color, #{$smeup-primary});
-  --btn_main-color-hover: var(
-    --kup-button_main-color-hover,
-    #{lighten($smeup-primary, 10)}
-  );
-  --btn_main-color-active: var(
-    --kup-button_main-color-active,
-    #{darken($smeup-primary, 10)}
-  );
-  --btn_text-color: var(--kup-button_text-color, #ffffff);
-  --btn_text-color--transparent: var(
-    --kup-button_text-color--transparent,
-    gray
-  );
-  --btn_text-decoration: var(--kup-button_text-decoration, 'none');
-  --btn_icon-color: var(--kup-button_icon-color, #ffffff);
-  --btn_icon--transparent: var(--kup-button_icon-color--transparent, gray);
-  --btn_animation-duration: var(--kup-button_animation-duration, 0.3s);
-  --btn_border-color: var(--kup-button_border-color, #{$smeup-primary});
-  --btn_opacity: var(--kup-button_opacity, 1);
-  --btn_box-shadow: var(
-    --kup-button_box-shadow,
-    0px 0px 7.5px 0px rgba(128, 128, 128, 0.5)
-  );
-  --btn_border: var(--kup-button_border, none);
-  --btn_border-radius: var(--kup-button_border-radius, 2px);
+  --btn_border-radius: var(--kup-button_border-radius);
+  --btn_font-family: var(--kup-button_font-family);
+  --btn_font-size: var(--kup-button_font-size);
+  --btn_font-style: var(--kup-button_font-style);
+  --btn_font-weight: var(--kup-button_font-weight);
+  --btn_icon-color: var(--kup-button_icon-color);
+  --btn_icon-size: var(--kup-button_icon-size);
+  --btn_main-color: var(--kup-button_main-color);
+  --btn_text-color: var(--kup-button_text-color);
+  --btn_text-decoration: var(--kup-button_text-decoration);
 
   @include stateVars('--btn');
 }
 
-:host(.fillspace) {
-  button {
-    width: 100%;
-  }
-}
+// theme support -- example
 
-button {
-  outline: none; //override browser
-  opacity: var(--btn_opacity);
-  background: var(--btn_main-color);
-  border-radius: var(--btn_border-radius);
-  border: var(--btn_border);
-  box-shadow: none;
-  color: var(--btn_text-color);
-  cursor: pointer;
-  font-family: var(--btn_font-family);
-  font-size: var(--btn_font-size);
-  font-weight: var(--btn_font-weight);
-  padding: 0.5rem 1rem;
-  text-align: center;
-  transition: box-shadow var(--btn_animation-duration),
-    opacity var(--btn_animation-duration) ease-in-out,
-    background-color var(--btn_animation-duration) ease;
-  white-space: nowrap;
+$mdc-theme-primary: $smeup-primary;
+$mdc-theme-secondary: #d1c4e9;
+$mdc-theme-background: #fdf6f9;
 
-  &:hover {
-    box-shadow: var(--btn_box-shadow);
-    background: var(--btn_main-color-hover);
-  }
+@import '@material/button/mdc-button';
 
-  &:active {
-    box-shadow: none;
-    background: var(--btn_main-color-active);
-  }
+.mdc-button {
+  @include mdc-states(#fff);
 
-  //-- The button icon --
-  > .button-icon {
-    display: block;
-    color: var(--btn_icon-color);
-    fill: var(--btn_icon-color);
-    float: left;
-    width: var(--btn_icon-size);
-    & + .button-text {
-      margin-left: 0.5rem;
+  & .material-icons {
+    margin: 0;
+
+    &:before {
+      line-height: 1;
+      vertical-align: top;
     }
   }
 
-  //-- The button image --
-  > .button-image {
-    cursor: pointer;
-    max-width: 24px;
-    max-height: 24px;
-
-    & + .button-text {
-      margin-left: 5px;
+  &.trailing-left {
+    & .material-icons ~ .button-text {
+      margin-left: 8px;
     }
   }
 
-  //-- The button text --
-  > .button-text {
-    font-style: var(--btn_font-style);
-    text-decoration: var(--btn_text-decoration);
-  }
-
-  //-- Rounded --
-  &.rounded {
-    border-radius: 15px;
-  }
-
-  //-- Transparent button --
-  &.transparent {
-    background-color: transparent;
-    border: 1px solid var(--btn_border-color);
-    color: var(--btn_text-color--transparent);
-
-    // When transparent, changes icon color
-    > .button-icon {
-      color: var(--btn_icon-color--transparent);
-      fill: var(--btn_icon-color--transparent);
+  &.trailing-right {
+    & .button-text ~ .material-icons {
+      margin-left: 8px;
     }
   }
 
-  //-- Standard classes for state --
-  &.btn-info {
-    background: var(--btn_color-info);
+  &.button-shaped,
+  &.button-shaped .mdc-button__ripple {
+    border-radius: 18px;
   }
 
-  &.btn-danger {
-    background: var(--btn_color-danger);
-
-    &:hover {
-      background: var(--btn_color-danger--hover);
-    }
-  }
-
-  &.btn-warning {
-    background: var(--btn_color-warning);
-  }
-
-  &.btn-selected {
-    background: var(--btn_color-selected);
-  }
-
-  //-- Flat button --
-  &.flat-btn {
-    background: none;
-    border: none;
-    color: var(--btn_main-color);
-
-    &:hover {
-      box-shadow: none;
-
-      .button-text {
-        text-decoration: underline;
-      }
-    }
-
-    // When transparent, changes icon color
-    > .button-icon {
-      color: var(--btn_main-color);
-      fill: var(--btn_main-color);
-    }
-  }
-
-  //-- Align --
-  &.align-right {
-    text-align: right;
-
-    > .button-icon {
-      float: right;
-      margin-right: 0;
-      margin-left: 0.5rem;
-    }
-  }
-
-  &.align-left {
-    text-align: left;
-  }
-
-  //-- Fillspace --
   &.fillspace {
     width: 100%;
   }
-}
 
-.mdc-button {
+  & {
+    background: var(--btn_main-color);
 
-  @include mdc-button-ink-color(#fff);
-  @include mdc-states(#fff);
+    &.btn-info {
+      background: var(--btn_color-info);
+    }
 
+    &.btn-danger {
+      background: var(--btn_color-danger);
+    }
+
+    &.btn-warning {
+      background: var(--btn_color-warning);
+    }
+
+    &.btn-selected {
+      background: var(--btn_color-selected);
+    }
+
+    & .button-text {
+      border-radius: var(--btn_border-radius);
+      color: var(--btn_text-color);
+      font-family: var(--btn_font-family);
+      font-size: var(--btn_font-size);
+      font-style: var(--btn_font-style);
+      font-weight: var(--btn_font-weight);
+      text-decoration: var(--btn_text-decoration);
+    }
+
+    & .material-icons {
+      &:before {
+        color: var(--btn_icon-color);
+        font-size: var(--btn_icon-size);
+      }
+    }
+  }
 }
