@@ -2,6 +2,7 @@ import {
     Component,
     Event,
     Prop,
+    Element,
     //State,
     //Watch,
     Host,
@@ -9,8 +10,8 @@ import {
     h,
     //Method,
 } from '@stencil/core';
-import { MDCRipple } from '@material/ripple/index';
-//import { MDCCheckbox } from '@material/checkbox';
+import { MDCCheckbox } from '@material/checkbox';
+import { MDCFormField } from '@material/form-field';
 
 @Component({
     tag: 'kup-checkbox',
@@ -80,10 +81,19 @@ export class KupCheckbox {
         checked: boolean;
     }>;
 
+    @Element() ketchupCheckboxEl: HTMLElement;
+
     //---- Methods ----
 
     componentDidLoad() {
-        MDCRipple.attachTo(this.checkbox);
+        const root = this.ketchupCheckboxEl.shadowRoot;
+
+        if (root != null) {
+            MDCCheckbox.attachTo(root.querySelector('.mdc-checkbox'));
+            MDCFormField.attachTo(root.querySelector('.mdc-form-field'));
+        } else {
+            console.warn(`checkbox not properly implemented: ${this.checkbox.outerHTML}`);
+        }
     }
 
     //-- Events handlers --
@@ -117,33 +127,31 @@ export class KupCheckbox {
     render() {
         return (
             <Host onFocus={this.onHostFocus.bind(this)}>
-                <div class="mdc-checkbox">
-                    <input
-                        type="checkbox"
-                        ref={(el) => (this.checkbox = el as HTMLInputElement)}
-                        class="mdc-checkbox__native-control"
-                        aria-label={this.label ? this.label : null}
-                        checked={this.checked}
-                        disabled={this.disabled}
-                        tabindex={this.setTabIndex}
-                        onBlur={this.onCheckboxBlur.bind(this)}
-                        onChange={this.onCheckboxChange.bind(this)}
-                        onFocus={this.onCheckboxFocus.bind(this)}
-                    />
-                    <div class="mdc-checkbox__background">
-                        <svg
-                            class="mdc-checkbox__checkmark"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                class="mdc-checkbox__checkmark-path"
-                                fill="none"
-                                d="M1.73,12.91 8.1,19.28 22.79,4.59"
-                            />
-                        </svg>
-                        <div class="mdc-checkbox__mixedmark"></div>
+                <div class="mdc-form-field">
+                    <div class="mdc-checkbox">
+                        <input
+                            type="checkbox"
+                            ref={(el) => (this.checkbox = el as HTMLInputElement)}
+                            class="mdc-checkbox__native-control"
+                            aria-label={this.label ? this.label : null}
+                            checked={this.checked}
+                            disabled={this.disabled}
+                            tabindex={this.setTabIndex}
+                            onBlur={this.onCheckboxBlur.bind(this)}
+                            onChange={this.onCheckboxChange.bind(this)}
+                            onFocus={this.onCheckboxFocus.bind(this)}
+                        />
+                        <div class="mdc-checkbox__background">
+                            <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark-path"
+                                    fill="none"
+                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                            </svg>
+                            <div class="mdc-checkbox__mixedmark"></div>
+                        </div>
+                        <div class="mdc-checkbox__ripple"></div>
                     </div>
-                    <div class="mdc-checkbox__ripple"></div>
                 </div>
             </Host>
         );
