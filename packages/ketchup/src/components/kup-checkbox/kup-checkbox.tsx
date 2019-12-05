@@ -9,6 +9,8 @@ import {
     h,
     //Method,
 } from '@stencil/core';
+import { MDCRipple } from '@material/ripple/index';
+//import { MDCCheckbox } from '@material/checkbox';
 
 @Component({
     tag: 'kup-checkbox',
@@ -19,13 +21,13 @@ export class KupCheckbox {
     /**
      * Sets the checkbox to be disabled
      */
-    @Prop({ mutable: true, reflect: true}) checked: boolean = false;
+    @Prop({ mutable: true, reflect: true }) checked: boolean = false;
     /**
      * Sets the checkbox to be disabled
      *
      * Must have reflect into the attribute
      */
-    @Prop({ reflect: true}) disabled: boolean = false;
+    @Prop({ reflect: true }) disabled: boolean = false;
     /**
      * The label to set to the component
      */
@@ -80,10 +82,14 @@ export class KupCheckbox {
 
     //---- Methods ----
 
+    componentDidLoad() {
+        MDCRipple.attachTo(this.checkbox);
+    }
+
     //-- Events handlers --
 
     onCheckboxBlur() {
-        this.kupCheckboxBlur.emit({checked: !!this.checkbox.checked})
+        this.kupCheckboxBlur.emit({ checked: !!this.checkbox.checked });
     }
 
     onCheckboxChange(e: UIEvent) {
@@ -97,7 +103,7 @@ export class KupCheckbox {
     }
 
     onCheckboxFocus() {
-        this.kupCheckboxFocus.emit({checked: !!this.checkbox.checked})
+        this.kupCheckboxFocus.emit({ checked: !!this.checkbox.checked });
     }
 
     onHostFocus() {
@@ -109,21 +115,35 @@ export class KupCheckbox {
     //---- Lifecycle hooks ----
 
     render() {
-        return(
-            <Host
-                onFocus={this.onHostFocus.bind(this)}>
-                <div class="kup-checkbox">
+        return (
+            <Host onFocus={this.onHostFocus.bind(this)}>
+                <div class="mdc-checkbox">
                     <input
-                        ref={(el) => this.checkbox = el as HTMLInputElement}
+                        type="checkbox"
+                        ref={(el) => (this.checkbox = el as HTMLInputElement)}
+                        class="mdc-checkbox__native-control"
                         aria-label={this.label ? this.label : null}
                         checked={this.checked}
                         disabled={this.disabled}
                         tabindex={this.setTabIndex}
-                        type="checkbox"
                         onBlur={this.onCheckboxBlur.bind(this)}
                         onChange={this.onCheckboxChange.bind(this)}
-                        onFocus={this.onCheckboxFocus.bind(this)}/>
-                    <span class="kup-checkbox__check"/>
+                        onFocus={this.onCheckboxFocus.bind(this)}
+                    />
+                    <div class="mdc-checkbox__background">
+                        <svg
+                            class="mdc-checkbox__checkmark"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                            />
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
                 </div>
             </Host>
         );
