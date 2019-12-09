@@ -12,6 +12,7 @@ export class KupBtn {
 
     // setup props
     @Prop() config: ButtonConfig = {};
+    @Prop() custom: boolean = false;
 
     @State() selectedBtnIndex: number;
 
@@ -59,6 +60,9 @@ export class KupBtn {
                     if (id === this.selectedBtnIndex) {
                         btnClass += ' btn-selected';
                     }
+                    if (this.custom) {
+                        btnClass += ' custom';
+                    }
 
                     let cls =
                         this.config.fillspace || !this.config.horizontal
@@ -70,7 +74,6 @@ export class KupBtn {
                             <kup-button
                                 iconUrl={this.config.iconUrl}
                                 label={btn.value}
-                                custom={this.config.custom}
                                 iconClass={btn.iconClass}
                                 fillspace={this.config.fillspace}
                                 showtext={this.config.showtext}

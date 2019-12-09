@@ -23,7 +23,7 @@ $mdc-theme-primary: $smeup-primary;
   --btn_font-weight: var(--kup-button_font-weight);
   --btn_icon-color: var(--kup-button_icon-color);
   --btn_icon-size: var(--kup-button_icon-size);
-  --btn_main-color: var(--kup-button_main-color);
+  --btn_main-color: var(--kup-button_main-color, #4e908f);
   --btn_text-color: var(--kup-button_text-color);
   --btn_text-decoration: var(--kup-button_text-decoration);
 
