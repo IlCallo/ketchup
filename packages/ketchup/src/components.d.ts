@@ -36,6 +36,7 @@ import {
 } from './components/kup-btn/kup-btn-declarations';
 import {
   ChartAspect,
+  ChartAxis,
   ChartClickedEvent,
   ChartType,
 } from './components/kup-chart/kup-chart-declarations';
@@ -195,12 +196,14 @@ export namespace Components {
     'graphTitle': string;
     'graphTitleColor': string;
     'graphTitleSize': number;
+    'hAxis': ChartAxis;
     'height': number;
     'legend': boolean;
     'series': string[];
     'showMarks': boolean;
     'stacked': boolean;
     'types': ChartType[];
+    'vAxis': ChartAxis;
     /**
     * Google chart version to load
     */
@@ -1145,6 +1148,7 @@ declare namespace LocalJSX {
     'graphTitle'?: string;
     'graphTitleColor'?: string;
     'graphTitleSize'?: number;
+    'hAxis'?: ChartAxis;
     'height'?: number;
     'legend'?: boolean;
     /**
@@ -1155,6 +1159,7 @@ declare namespace LocalJSX {
     'showMarks'?: boolean;
     'stacked'?: boolean;
     'types'?: ChartType[];
+    'vAxis'?: ChartAxis;
     /**
     * Google chart version to load
     */
