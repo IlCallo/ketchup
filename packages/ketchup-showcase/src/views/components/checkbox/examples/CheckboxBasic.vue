@@ -36,8 +36,8 @@
     <div class="example-container">
       <kup-checkbox
         custom
-        :checked.prop="base"
-        @kupCheckboxChange="changeBase"
+        :checked.prop="custom"
+        @kupCheckboxChange="changecustom"
       />
       <code>Checked: {{ cbDisabled }}</code>
     </div>
@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       base: false,
+      custom: true,
       cbChecked: {
         checked: true,
         focused: false,
@@ -60,6 +61,9 @@ export default {
   methods: {
     changeBase(e) {
       this.base = e.detail.checked;
+    },
+    changeCustom(e) {
+      this.custom = e.detail.checked;
     },
     changeChecked(e) {
       this.cbChecked.checked = e.detail.checked;
