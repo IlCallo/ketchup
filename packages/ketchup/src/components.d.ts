@@ -156,11 +156,13 @@ export namespace Components {
   interface KupBtn {
     'buttons': any[];
     'config': ButtonConfig;
+    'custom': boolean;
   }
   interface KupButton {
     'align': string;
     'buttonClass': string;
     'buttonStyle': {};
+    'custom': boolean;
     'disabled': boolean;
     'fillspace': boolean;
     'flat': boolean;
@@ -220,6 +222,10 @@ export namespace Components {
     */
     'checked': boolean;
     /**
+    * Sets whether the component uses custom CSS variables or not
+    */
+    'custom': boolean;
+    /**
     * Sets the checkbox to be disabled  Must have reflect into the attribute
     */
     'disabled': boolean;
@@ -235,6 +241,7 @@ export namespace Components {
   interface KupChip {
     'closable': boolean;
     'disabled': boolean;
+    'iconUrl': string;
   }
   interface KupChipKnowledge {
     'closeable'?: boolean;
@@ -1077,11 +1084,13 @@ declare namespace LocalJSX {
   interface KupBtn extends JSXBase.HTMLAttributes<HTMLKupBtnElement> {
     'buttons'?: any[];
     'config'?: ButtonConfig;
+    'custom'?: boolean;
   }
   interface KupButton extends JSXBase.HTMLAttributes<HTMLKupButtonElement> {
     'align'?: string;
     'buttonClass'?: string;
     'buttonStyle'?: {};
+    'custom'?: boolean;
     'disabled'?: boolean;
     'fillspace'?: boolean;
     'flat'?: boolean;
@@ -1176,6 +1185,10 @@ declare namespace LocalJSX {
     */
     'checked'?: boolean;
     /**
+    * Sets whether the component uses custom CSS variables or not
+    */
+    'custom'?: boolean;
+    /**
     * Sets the checkbox to be disabled  Must have reflect into the attribute
     */
     'disabled'?: boolean;
@@ -1209,6 +1222,7 @@ declare namespace LocalJSX {
   interface KupChip extends JSXBase.HTMLAttributes<HTMLKupChipElement> {
     'closable'?: boolean;
     'disabled'?: boolean;
+    'iconUrl'?: string;
     'onClose'?: (event: CustomEvent<any>) => void;
   }
   interface KupChipKnowledge extends JSXBase.HTMLAttributes<HTMLKupChipKnowledgeElement> {

@@ -1,4 +1,12 @@
-import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
+import {
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    Prop,
+    h,
+} from '@stencil/core';
+import { MDCChipSet } from '@material/chips';
 
 @Component({
     tag: 'kup-chip',
@@ -8,6 +16,9 @@ import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
 export class KupChip {
     @Prop({ reflect: true })
     closable = false;
+
+    @Prop() iconUrl =
+        'https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css';
 
     @Prop({ reflect: true })
     disabled = false;
@@ -22,39 +33,53 @@ export class KupChip {
         }
     }
 
+    @Element() ketchupChipsEl: HTMLElement;
+
+    componentDidLoad() {
+        const root = this.ketchupChipsEl.shadowRoot;
+
+        if (root != null) {
+            MDCChipSet.attachTo(root.querySelector('.mdc-chip-set'));
+        } else {
+            console.warn(`chip not properly implemented`);
+        }
+    }
+
     render() {
         let close = null;
         if (this.closable) {
             close = (
-                <svg
-                    version="1.1"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    aria-hidden="false"
-                    onClick={() => this.onCloseClicked()}
-                >
-                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                </svg>
+                <span role="gridcell">
+                    <i
+                        tabindex="-1"
+                        role="button"
+                        class="mdc-chip__icon mdc-chip__icon--trailing mdi mdi-close"
+                        onClick={() => this.onCloseClicked()}
+                    ></i>
+                </span>
             );
         }
 
-        const chipClass = {
-            disabled: this.disabled,
-        };
+        let chipClass = 'mdc-chip';
 
-        return (
-            <span
-                id="chip"
-                class={chipClass}
-                tabindex="0"
-                aria-disabled={this.disabled ? 'true' : 'false'}
-            >
-                <span id="content">
+        if (this.disabled) {
+            chipClass += ' disabled';
+        }
+
+        return [
+            <link href={this.iconUrl} rel="stylesheet" type="text/css" />,
+            <div class="mdc-chip-set" role="grid">
+                <div
+                    role="row"
+                    class={chipClass}
+                    tabindex="0"
+                    aria-disabled={this.disabled ? 'true' : 'false'}
+                >
+                    <div class="mdc-chip__ripple"></div>
                     <slot />
                     {close}
-                </span>
-            </span>
-        );
+                </div>
+            </div>,
+        ];
     }
 }

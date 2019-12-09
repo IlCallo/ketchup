@@ -7,6 +7,9 @@
 * @prop --chi_disabled-color, --kup-chip_disabled-color: Text color when the chip is disabled
 * @prop --chi_disabled-background-color, --kup-chip_disabled-background-color: Background color when the chip is disabled
 */
+$mdc-theme-primary: $smeup-primary;
+
+@import '@material/chips/mdc-chips';
 
 :host {
   --chi_color: var(--kup-chip_color, #{$gray-1a});
@@ -19,54 +22,4 @@
     --kup-chip_disabled-background-color,
     #{$gray-f0}
   );
-}
-
-#chip {
-  background: var(--chi_background);
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
-  margin: 0.5rem;
-  margin-left: 0;
-  padding: 0.5rem;
-  outline: none;
-  cursor: default;
-
-  &:not(.disabled):hover {
-    background: var(--chi_background-hover);
-  }
-
-  #content {
-    margin: 0 3px;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    justify-content: space-between;
-    color: var(--chi_color);
-
-    svg {
-      cursor: pointer;
-      fill: var(--chi_icon-color);
-      margin-left: 4px;
-
-      &:hover {
-        fill: var(--chi_icon-color-hover);
-      }
-    }
-  }
-
-  &.disabled {
-    background: var(--chi_disabled-background-color);
-
-    #content {
-      color: var(--chi_disabled-color);
-    }
-
-    #content {
-      svg {
-        cursor: default;
-        fill: var(--chi_disabled-color);
-      }
-    }
-  }
 }
