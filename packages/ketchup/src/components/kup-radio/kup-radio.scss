@@ -1,10 +1,5 @@
-@import 'kup-radio-common';
-
-@include radio-css-vars-docs(rad, radio);
-
-:host {
-  @include radio-css-vars(rad, radio);
-}
+@import '@material/radio/mdc-radio';
+@import '@material/form-field/mdc-form-field';
 
 .kup-radio {
   // The group containing the radio buttons. Uses a ul element
@@ -21,44 +16,11 @@
       flex-wrap: wrap;
     }
   }
-
-  // Style of a single radio element
-  &__item {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin: 10px 12px;
-    z-index: 0;
-
-    // Container of the icon
-    > div {
-      @include radio-graphics(rad);
-
-      // Real radio button
-      > input {
-        cursor: pointer;
-        height: 100%;
-        left: 0;
-        margin: 0;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 2;
-      }
-    }
-
-    &--selected {
-      div {
-        @include radio-graphics-selected(rad);
-      }
-    }
-
-    label {
-      cursor: pointer;
-      font-size: var(--rad_font-size);
-      margin-left: 10px;
-    }
+  & .mdc-radio {
+    @include mdc-radio-unchecked-stroke-color(red);
+    @include mdc-radio-checked-stroke-color(blue);
+    @include mdc-radio-ink-color(purple);
+    @include mdc-radio-disabled-unchecked-stroke-color(pink);
+    @include mdc-radio-disabled-checked-stroke-color(orange);
   }
 }

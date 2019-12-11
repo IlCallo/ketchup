@@ -1,5 +1,6 @@
 import {
     Component,
+    Element,
     Event,
     EventEmitter,
     Prop,
@@ -13,6 +14,8 @@ import {
     KetchupRadioChangeEvent,
     KetchupRadioElementFactory,
 } from './kup-radio-declarations';
+import { MDCRadio } from '@material/radio';
+import { MDCFormField } from '@material/form-field';
 
 @Component({
     tag: 'kup-radio',
@@ -53,6 +56,8 @@ export class KupRadio {
      */
     @Prop({ reflect: true }) disabled: boolean = false;
 
+    @Element() ketchupRadioEl: HTMLElement;
+
     //---- Validating props ----
     @Watch('direction')
     checkDirection(newVal: string) {
@@ -71,6 +76,18 @@ export class KupRadio {
         // When the component is going to be loaded, if there is an initial value set, we can reflect it to internal state
         // This is used because when component is instantiated it does NOT run watchers.
         this.reflectInitialValue(this.initialValue);
+    }
+
+    componentDidLoad() {
+        const root = this.ketchupRadioEl.shadowRoot;
+
+        if (root != null) {
+            let radio = MDCRadio.attachTo(root.querySelector('.mdc-radio'));
+            let formField = MDCFormField.attachTo(
+                root.querySelector('.mdc-form-field')
+            );
+            formField.input = radio;
+        }
     }
 
     //---- Private methods ----
@@ -128,17 +145,27 @@ export class KupRadio {
                             : '')
                     }
                 >
-                    <div>
-                        <input
-                            id={uId}
-                            disabled={this.disabled}
-                            type="radio"
-                            name={this.radioName}
-                            value={radio[this.valueField]}
-                            onChange={this.onRadioChanged.bind(this, radio)}
-                        />
+                    <div class="mdc-form-field">
+                        <div class="mdc-radio">
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                            <div class="mdc-radio__ripple"></div>
+                            <input
+                                class="mdc-radio__native-control"
+                                id={uId}
+                                disabled={this.disabled}
+                                type="radio"
+                                name={this.radioName}
+                                value={radio[this.valueField]}
+                                onChange={this.onRadioChanged.bind(this, radio)}
+                            />
+                        </div>
+                        <label htmlFor={uId}>
+                            {radio[this.displayedField]}
+                        </label>
                     </div>
-                    <label htmlFor={uId}>{radio[this.displayedField]}</label>
                 </li>
             );
         });
