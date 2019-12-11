@@ -11,14 +11,21 @@
 @import '@material/chips/mdc-chips';
 
 :host {
-  --chi_color: var(--kup-chip_color, #{$gray-1a});
+  --chi_color: var(--kup-chip_color);
   --chi_icon-color: var(--kup-chip_icon-color, #{$mainRed});
   --chi_icon-color-hover: var(--kup-chip_icon-color-hover, #{$mainRedLight});
-  --chi_background: var(--kup-chip_background, #{$gray-f0});
+  --chi_background: var(--kup-chip_background);
   --chi_background-hover: var(--kup-chip_background-hover, #{$gray-e5});
   --chi_disabled-color: var(--kup-chip_disabled-color, #{$gray-88});
   --chi_disabled-background-color: var(
     --kup-chip_disabled-background-color,
     #{$gray-f0}
   );
+}
+
+.mdc-chip {
+  &.custom {
+    @include mdc-chip-fill-color(var(--chi_background));
+    //@include mdc-chip-ink-color(var(--chi_color));
+  }
 }

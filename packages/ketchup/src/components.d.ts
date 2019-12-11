@@ -240,6 +240,7 @@ export namespace Components {
   }
   interface KupChip {
     'closable': boolean;
+    'custom': boolean;
     'disabled': boolean;
     'iconUrl': string;
   }
@@ -1221,6 +1222,7 @@ declare namespace LocalJSX {
   }
   interface KupChip extends JSXBase.HTMLAttributes<HTMLKupChipElement> {
     'closable'?: boolean;
+    'custom'?: boolean;
     'disabled'?: boolean;
     'iconUrl'?: string;
     'onClose'?: (event: CustomEvent<any>) => void;

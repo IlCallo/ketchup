@@ -14,6 +14,7 @@ import { MDCChipSet } from '@material/chips';
     shadow: true,
 })
 export class KupChip {
+    @Prop() custom: boolean = false;
     @Prop({ reflect: true })
     closable = false;
 
@@ -64,6 +65,10 @@ export class KupChip {
 
         if (this.disabled) {
             chipClass += ' disabled';
+        }
+
+        if (this.custom) {
+            chipClass += ' custom';
         }
 
         return [
