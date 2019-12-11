@@ -2,9 +2,6 @@
 * @prop --checkbox_background-color, --kup-checkbox_background-color: Sets the background color of the checkbox
 * @prop --checkbox_tick-color, --kup-checkbox_tick-color: Sets color of the tick of the checkbox.
 */
-
-$mdc-theme-secondary: $smeup-primary;
-
 @import '@material/checkbox/mdc-checkbox';
 @import '@material/form-field/mdc-form-field';
 
