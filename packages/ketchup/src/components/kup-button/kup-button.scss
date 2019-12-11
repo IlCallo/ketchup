@@ -4,6 +4,7 @@
 * @prop --btn_font-size, --kup-button_font-size: Sets button font size.
 * @prop --btn_font-style, --kup-button_font-style: Sets button font style.
 * @prop --btn_font-weight, --kup-button_font-weight: Sets the font weight of the button
+* @prop --btn_height, --kup-button_height: Sets height of the button.
 * @prop --btn_icon-color, --kup-button_icon-color: Sets icon color.
 * @prop --btn_icon-size, --kup-button_icon-size: Set icon size.
 * @prop --btn_main-color, --kup-button_main-color: Sets the main color of the button.
@@ -14,11 +15,12 @@
 @import '@material/button/mdc-button';
 
 :host {
-  --btn_border-radius: var(--kup-button_border-radius);
+  --btn_border-radius: var(--kup-button_border-radius, 4px);
   --btn_font-family: var(--kup-button_font-family);
   --btn_font-size: var(--kup-button_font-size);
   --btn_font-style: var(--kup-button_font-style);
   --btn_font-weight: var(--kup-button_font-weight);
+  --btn_height: var(--kup-button_height, 36px);
   --btn_icon-color: var(--kup-button_icon-color);
   --btn_icon-size: var(--kup-button_icon-size);
   --btn_main-color: var(--kup-button_main-color);
@@ -64,6 +66,8 @@
   &.custom {
     @include mdc-button-container-fill-color(var(--btn_main-color));
     @include mdc-button-ink-color(var(--btn_text-color));
+    @include mdc-button-height(var(--btn_height), structure);
+    @include mdc-button-shape-radius(var(--btn_border-radius));
 
     &.btn-info {
       @include mdc-button-container-fill-color(var(--btn_color-info));
@@ -82,7 +86,6 @@
     }
 
     & .button-text {
-      border-radius: var(--btn_border-radius);
       font-family: var(--btn_font-family);
       font-size: var(--btn_font-size);
       font-style: var(--btn_font-style);
