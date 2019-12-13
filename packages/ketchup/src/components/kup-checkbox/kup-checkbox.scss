@@ -1,26 +1,27 @@
-/**
-* @prop --checkbox_background-color, --kup-checkbox_background-color: Sets the background color of the checkbox
-* @prop --checkbox_tick-color, --kup-checkbox_tick-color: Sets color of the tick of the checkbox.
-*/
 @import '@material/checkbox/mdc-checkbox';
 @import '@material/form-field/mdc-form-field';
 
 :host {
-  --checkbox_background-color: var(--kup-checkbox_background-color);
-  --checkbox_tick-color: var(--kup-checkbox_tick-color);
+  display: block;
 }
 
 .mdc-checkbox {
   &.custom {
-    .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
-    .mdc-checkbox__native-control:enabled:indeterminate
-      ~ .mdc-checkbox__background {
-      background-color: var(--checkbox_background-color);
-      border-color: var(--checkbox_background-color);
-
-      & .mdc-checkbox__checkmark {
-        color: var(--checkbox_tick-color);
-      }
-    }
+    @include mdc-checkbox-container-colors(
+      $mdc-checkbox-fill-unmarked,
+      $mdc-checkbox-border-unmarked,
+      $mdc-checkbox-fill-marked,
+      $mdc-checkbox-border-marked
+    );
+    @include mdc-checkbox-disabled-container-colors(
+      $mdc-checkbox-fill-disabled-unmarked,
+      $mdc-checkbox-border-disabled-unmarked,
+      $mdc-checkbox-fill-disabled-marked,
+      $mdc-checkbox-border-disabled-marked
+    );
+    @include mdc-checkbox-ink-color($mdc-checkbox-ink);
+    @include mdc-checkbox-disabled-ink-color($mdc-checkbox-ink-disabled);
+    @include mdc-checkbox-focus-indicator-color($mdc-ripple-color);
+    @include mdc-checkbox-density($mdc-density);
   }
 }

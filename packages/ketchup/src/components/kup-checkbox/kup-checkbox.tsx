@@ -1,14 +1,19 @@
+// >   R  E  A  D  M  E <
+//
+// --> M A T E R I A L    D E S I G N
+//
+//     This component is a form field, it should be managed as such.
+//     For more info: https://material.io/develop/web/components/input-controls/form-fields/
+//
+
 import {
     Component,
     Event,
+    EventEmitter,
     Prop,
     Element,
-    //State,
-    //Watch,
     Host,
-    EventEmitter,
     h,
-    //Method,
 } from '@stencil/core';
 import { MDCCheckbox } from '@material/checkbox';
 import { MDCFormField } from '@material/form-field';
@@ -20,140 +25,105 @@ import { MDCFormField } from '@material/form-field';
 })
 export class KupCheckbox {
     /**
-     * Sets the checkbox to be disabled
+     * Defaults at false. When set to true, the component will be set to 'checked'.
      */
-    @Prop({ mutable: true, reflect: true }) checked: boolean = false;
+    @Prop() checked: boolean = false;
     /**
-     * Sets the checkbox to be disabled
-     *
-     * Must have reflect into the attribute
-     */
-    @Prop({ reflect: true }) disabled: boolean = false;
-    /**
-     * The label to set to the component
-     */
-    @Prop() label: string = '';
-    /**
-     * Sets the tabindex of the checkbox
-     */
-    @Prop() setTabIndex: number = 0;
-    /**
-     * Sets whether the component uses custom CSS variables or not
+     * Defaults at false. When set to true, mixins and classes of customization are enabled.
      */
     @Prop() custom: boolean = false;
-
-    //---- Internal state ----
-    checkbox: HTMLInputElement;
-
-    //---- Public events ----
     /**
-     * Fired when the checkbox input is blurred
+     * Defaults at false. When set to true, the component is disabled.
      */
+    @Prop() disabled: boolean = false;
+    /**
+     * Defaults at false. When set to true, the component will be set to 'indeterminate'.
+     */
+    @Prop() indeterminate: boolean = false;
+    /**
+     * Defaults at null. When specified, its content is shown to the left of the component as a label.
+     */
+    @Prop() labelleft: string = null;
+    /**
+     * Defaults at null. When specified, its content is shown to the right of the component as a label.
+     */
+    @Prop() labelright: string = null;
+
+    @Element() rootElement: HTMLElement;
+
     @Event({
-        eventName: 'kupCheckboxBlur',
+        eventName: 'componentChange',
         composed: true,
         cancelable: false,
         bubbles: true,
     })
-    kupCheckboxBlur: EventEmitter<{
+    componentChange: EventEmitter<{
         checked: boolean;
     }>;
-
-    /**
-     * Fired when the checkbox input changes its value
-     */
-    @Event({
-        eventName: 'kupCheckboxChange',
-        composed: true,
-        cancelable: false,
-        bubbles: true,
-    })
-    kupCheckboxChange: EventEmitter<{
-        checked: boolean;
-    }>;
-
-    /**
-     * Fired when the checkbox input receive focus
-     */
-    @Event({
-        eventName: 'kupCheckboxFocus',
-        composed: true,
-        cancelable: false,
-        bubbles: true,
-    })
-    kupCheckboxFocus: EventEmitter<{
-        checked: boolean;
-    }>;
-
-    @Element() ketchupCheckboxEl: HTMLElement;
 
     //---- Methods ----
 
-    componentDidLoad() {
-        const root = this.ketchupCheckboxEl.shadowRoot;
-
-        if (root != null) {
-            MDCCheckbox.attachTo(root.querySelector('.mdc-checkbox'));
-            MDCFormField.attachTo(root.querySelector('.mdc-form-field'));
-        } else {
-            console.warn(
-                `checkbox not properly implemented: ${this.checkbox.outerHTML}`
-            );
-        }
-    }
-
-    //-- Events handlers --
-
-    onCheckboxBlur() {
-        this.kupCheckboxBlur.emit({ checked: !!this.checkbox.checked });
-    }
-
-    onCheckboxChange(e: UIEvent) {
+    onComponentChange(e: UIEvent) {
         const newValue = !!(e.target as HTMLInputElement).checked;
         if (newValue !== this.checked) {
             this.checked = newValue;
-            this.kupCheckboxChange.emit({
+            this.componentChange.emit({
                 checked: newValue,
             });
         }
     }
 
-    onCheckboxFocus() {
-        this.kupCheckboxFocus.emit({ checked: !!this.checkbox.checked });
-    }
+    //---- Lifecycle hooks ----
 
-    onHostFocus() {
-        if (this.checkbox) {
-            this.checkbox.focus();
+    componentDidLoad() {
+        const root = this.rootElement.shadowRoot;
+
+        if (root != null) {
+            const component = MDCCheckbox.attachTo(
+                root.querySelector('.mdc-checkbox')
+            );
+            const formField = MDCFormField.attachTo(
+                root.querySelector('.mdc-form-field')
+            );
+            formField.input = component;
         }
     }
 
-    //---- Lifecycle hooks ----
+    //---- Rendering ----
 
     render() {
-        let checkboxClass = 'mdc-checkbox ';
+        let formClass: string = 'mdc-form-field';
+        let componentClass: string = 'mdc-checkbox';
+        let componentLabel: string = '';
 
         if (this.custom) {
-            checkboxClass += ' custom';
+            componentClass += ' custom';
+        }
+
+        if (this.disabled) {
+            componentClass += ' mdc-checkbox--disabled';
+        }
+
+        if (this.labelleft) {
+            formClass += ' mdc-form-field--align-end';
+            componentLabel = this.labelleft;
+        } else if (this.labelright) {
+            componentLabel = this.labelright;
         }
 
         return (
-            <Host onFocus={this.onHostFocus.bind(this)}>
-                <div class="mdc-form-field">
-                    <div class={checkboxClass}>
+            <Host checked={this.checked}>
+                <div class={formClass}>
+                    <div id="checkbox-wrapper" class={componentClass}>
+                        {/* 
+                            // @ts-ignore */}
                         <input
                             type="checkbox"
-                            ref={(el) =>
-                                (this.checkbox = el as HTMLInputElement)
-                            }
                             class="mdc-checkbox__native-control"
-                            aria-label={this.label ? this.label : null}
                             checked={this.checked}
                             disabled={this.disabled}
-                            tabindex={this.setTabIndex}
-                            onBlur={this.onCheckboxBlur.bind(this)}
-                            onChange={this.onCheckboxChange.bind(this)}
-                            onFocus={this.onCheckboxFocus.bind(this)}
+                            indeterminate={this.indeterminate}
+                            onChange={this.onComponentChange.bind(this)}
                         />
                         <div class="mdc-checkbox__background">
                             <svg
@@ -170,6 +140,7 @@ export class KupCheckbox {
                         </div>
                         <div class="mdc-checkbox__ripple"></div>
                     </div>
+                    <label htmlFor="checkbox-wrapper">{componentLabel}</label>
                 </div>
             </Host>
         );

@@ -1,51 +1,36 @@
 # kup-checkbox
 
-### Features to add:
 
-* Main label support: by using a label tag and a generated id.
-* Support aria-labelledby attribute.
 
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property      | Attribute       | Description                                                            | Type      | Default |
-| ------------- | --------------- | ---------------------------------------------------------------------- | --------- | ------- |
-| `checked`     | `checked`       | Sets the checkbox to be disabled                                       | `boolean` | `false` |
-| `disabled`    | `disabled`      | Sets the checkbox to be disabled  Must have reflect into the attribute | `boolean` | `false` |
-| `label`       | `label`         | The label to set to the component                                      | `string`  | `''`    |
-| `setTabIndex` | `set-tab-index` | Sets the tabindex of the checkbox                                      | `number`  | `0`     |
+| Property        | Attribute       | Description                                                                                      | Type      | Default |
+| --------------- | --------------- | ------------------------------------------------------------------------------------------------ | --------- | ------- |
+| `checked`       | `checked`       | Defaults at false. When set to true, the component will be set to 'checked'.                     | `boolean` | `false` |
+| `custom`        | `custom`        | Defaults at false. When set to true, mixins and classes of customization are enabled.            | `boolean` | `false` |
+| `disabled`      | `disabled`      | Defaults at false. When set to true, the component is disabled.                                  | `boolean` | `false` |
+| `indeterminate` | `indeterminate` | Defaults at false. When set to true, the component will be set to 'indeterminate'.               | `boolean` | `false` |
+| `labelleft`     | `labelleft`     | Defaults at null. When specified, its content is shown to the left of the component as a label.  | `string`  | `null`  |
+| `labelright`    | `labelright`    | Defaults at null. When specified, its content is shown to the right of the component as a label. | `string`  | `null`  |
 
 
 ## Events
 
-| Event               | Description                                     | Type                                 |
-| ------------------- | ----------------------------------------------- | ------------------------------------ |
-| `kupCheckboxBlur`   | Fired when the checkbox input is blurred        | `CustomEvent<{ checked: boolean; }>` |
-| `kupCheckboxChange` | Fired when the checkbox input changes its value | `CustomEvent<{ checked: boolean; }>` |
-| `kupCheckboxFocus`  | Fired when the checkbox input receive focus     | `CustomEvent<{ checked: boolean; }>` |
-
-
-## CSS Custom Properties
-
-| Name                                                                     | Description                                                        |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `--checkbox_background-color, --kup-checkbox_background-color`           | Sets the background color of the checkbox                          |
-| `--checkbox_border-color, --kup-checkbox_border-color`                   | Sets color of the border when checkbox is NOT disabled.            |
-| `--checkbox_border-color-disabled, --kup-checkbox_border-color-disabled` | Sets color of the border when checkbox IS disabled.                |
-| `--checkbox_size, --kup-checkbox_size`                                   | Sets the component size; all other sizes are scaled automatically. |
-| `--checkbox_tick-color, --kup-checkbox_tick-color`                       | Sets color of the tick of the checkbox.                            |
-| `--checkbox_tick-color-disabled, --kup-checkbox_tick-color-disabled`     | Sets color of the tick of the checkbox when checkbox is disabled.  |
+| Event             | Description | Type                                 |
+| ----------------- | ----------- | ------------------------------------ |
+| `componentChange` |             | `CustomEvent<{ checked: boolean; }>` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [kup-box](..\kup-box)
- - [kup-data-table](..\kup-data-table)
- - [kup-tree](..\kup-tree)
+ - [kup-box](../kup-box)
+ - [kup-data-table](../kup-data-table)
+ - [kup-tree](../kup-tree)
 
 ### Graph
 ```mermaid

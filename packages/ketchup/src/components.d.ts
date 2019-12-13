@@ -218,25 +218,29 @@ export namespace Components {
   }
   interface KupCheckbox {
     /**
-    * Sets the checkbox to be disabled
+    * Defaults at false. When set to true, the component will be set to 'checked'.
     */
     'checked': boolean;
     /**
-    * Sets whether the component uses custom CSS variables or not
+    * Defaults at false. When set to true, mixins and classes of customization are enabled.
     */
     'custom': boolean;
     /**
-    * Sets the checkbox to be disabled  Must have reflect into the attribute
+    * Defaults at false. When set to true, the component is disabled.
     */
     'disabled': boolean;
     /**
-    * The label to set to the component
+    * Defaults at false. When set to true, the component will be set to 'indeterminate'.
     */
-    'label': string;
+    'indeterminate': boolean;
     /**
-    * Sets the tabindex of the checkbox
+    * Defaults at null. When specified, its content is shown to the left of the component as a label.
     */
-    'setTabIndex': number;
+    'labelleft': string;
+    /**
+    * Defaults at null. When specified, its content is shown to the right of the component as a label.
+    */
+    'labelright': string;
   }
   interface KupChip {
     'closable': boolean;
@@ -1182,43 +1186,32 @@ declare namespace LocalJSX {
   }
   interface KupCheckbox extends JSXBase.HTMLAttributes<HTMLKupCheckboxElement> {
     /**
-    * Sets the checkbox to be disabled
+    * Defaults at false. When set to true, the component will be set to 'checked'.
     */
     'checked'?: boolean;
     /**
-    * Sets whether the component uses custom CSS variables or not
+    * Defaults at false. When set to true, mixins and classes of customization are enabled.
     */
     'custom'?: boolean;
     /**
-    * Sets the checkbox to be disabled  Must have reflect into the attribute
+    * Defaults at false. When set to true, the component is disabled.
     */
     'disabled'?: boolean;
     /**
-    * The label to set to the component
+    * Defaults at false. When set to true, the component will be set to 'indeterminate'.
     */
-    'label'?: string;
+    'indeterminate'?: boolean;
     /**
-    * Fired when the checkbox input is blurred
+    * Defaults at null. When specified, its content is shown to the left of the component as a label.
     */
-    'onKupCheckboxBlur'?: (event: CustomEvent<{
+    'labelleft'?: string;
+    /**
+    * Defaults at null. When specified, its content is shown to the right of the component as a label.
+    */
+    'labelright'?: string;
+    'onComponentChange'?: (event: CustomEvent<{
       checked: boolean;
     }>) => void;
-    /**
-    * Fired when the checkbox input changes its value
-    */
-    'onKupCheckboxChange'?: (event: CustomEvent<{
-      checked: boolean;
-    }>) => void;
-    /**
-    * Fired when the checkbox input receive focus
-    */
-    'onKupCheckboxFocus'?: (event: CustomEvent<{
-      checked: boolean;
-    }>) => void;
-    /**
-    * Sets the tabindex of the checkbox
-    */
-    'setTabIndex'?: number;
   }
   interface KupChip extends JSXBase.HTMLAttributes<HTMLKupChipElement> {
     'closable'?: boolean;
