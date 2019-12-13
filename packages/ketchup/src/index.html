@@ -33,6 +33,10 @@
                 box-sizing: border-box;
             }
 
+            .section {
+                margin-bottom: 30px;
+            }
+
             :focus {
                 outline: none;
             }
@@ -63,6 +67,41 @@
         </style>
     </head>
     <body>
+        <div class="section">
+            <h4>The Checkbox</h4>
+            <kup-checkbox
+                labelright="This label is on the right"
+            ></kup-checkbox>
+            <kup-checkbox labelleft="This label is on the left"></kup-checkbox>
+            <kup-checkbox
+                checked
+                labelleft="This good bro is checked"
+            ></kup-checkbox>
+            <kup-checkbox labelleft="This good bro is unchecked"></kup-checkbox>
+            <kup-checkbox
+                indeterminate
+                labelleft="This good bro is unsure"
+            ></kup-checkbox>
+            <kup-checkbox
+                disabled
+                labelleft="This good bro is disabled"
+            ></kup-checkbox>
+            <kup-checkbox
+                custom
+                labelleft="This good bro has custom CSS classes"
+            ></kup-checkbox>
+            <kup-checkbox
+                disabled
+                custom
+                labelleft="This good bro is disabled and has custom CSS classes"
+            ></kup-checkbox>
+            <kup-checkbox
+                disabled
+                checked
+                custom
+                labelleft="This good bro is disabled, is checked and has custom CSS classes"
+            ></kup-checkbox
+        ></div>
         <a href="chart.html">Ketchup charts</a>
         <br />
         <a href="data-table.html">Ketchup data table</a>
@@ -184,12 +223,6 @@
             second-threshold="275"
             value-size="3"
         ></kup-gauge>
-
-        <h4>The Checkbox</h4>
-        <kup-checkbox></kup-checkbox>
-        <kup-checkbox checked></kup-checkbox>
-        <kup-checkbox disabled></kup-checkbox>
-        <kup-checkbox custom></kup-checkbox>
 
         <script>
             let gaucolor = document.getElementById('gaucolor');

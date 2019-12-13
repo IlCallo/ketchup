@@ -51,7 +51,7 @@ function isElementPartiallyInViewport(el, offset) {
 
 function scrollToSmoothly() {
   var listLabels = document.querySelectorAll('.page-nav-element');
-  var elements = document.querySelectorAll('.section h1');
+  var elements = document.querySelectorAll('.section .nav-title');
 
   for (let i = 0; i < listLabels.length; i++) {
     if (event.target.textContent === listLabels[i].textContent) {
