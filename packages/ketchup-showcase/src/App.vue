@@ -27,7 +27,11 @@
               </template>
             </v-list-group>
 
-            <v-list-tile v-for="route in group.componentsItems" :key="route.to.name" :to="route.to">
+            <v-list-tile
+              v-for="route in group.componentsItems"
+              :key="route.to.name"
+              :to="route.to"
+            >
               <v-list-tile-content>
                 <v-list-tile-title>{{ route.title }}</v-list-tile-title>
               </v-list-tile-content>
@@ -44,7 +48,11 @@
               </template>
             </v-list-group>
 
-            <v-list-tile v-for="route in group.javascriptItems" :key="route.to.name" :to="route.to">
+            <v-list-tile
+              v-for="route in group.javascriptItems"
+              :key="route.to.name"
+              :to="route.to"
+            >
               <v-list-tile-content>
                 <v-list-tile-title>{{ route.title }}</v-list-tile-title>
               </v-list-tile-content>
@@ -56,7 +64,9 @@
 
     <v-toolbar class="header" fixed app>
       <div class="align-left">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar-side-icon
+          @click.stop="drawer = !drawer"
+        ></v-toolbar-side-icon>
         <v-toolbar-title>Ketch.UP showcase</v-toolbar-title>
       </div>
       <div class="align-center">
@@ -79,7 +89,7 @@
     </v-content>
 
     <v-footer app>
-      <span class="company-text">© Copyright 2019 - SME.UP Spa</span>
+      <span class="company-text">© Copyright 2019 - Sme.UP Spa</span>
     </v-footer>
   </v-app>
 </template>
