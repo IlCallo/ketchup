@@ -30,6 +30,7 @@ import {
 import {
     isButton,
     isYesNo,
+    isRadio,
     isPassword,
     isIcon,
 } from '../../utils/object-utils';
@@ -1208,6 +1209,26 @@ export class KupBox {
                             checked={checked}
                             disabled={true}
                         ></kup-checkbox>
+                    );
+                } else if (isRadio(cell.obj)) {
+                    let initialValue = {
+                        label: '',
+                        value: '1',
+                    };
+                    let items = [
+                        {
+                            label: '',
+                            value: cell.value,
+                        },
+                    ];
+
+                    boContent = (
+                        <kup-radio
+                            disabled={true}
+                            items={items}
+                            initialValue={initialValue}
+                            value-field="value"
+                        />
                     );
                 } else if (isPassword(cell.obj)) {
                     boContent = (

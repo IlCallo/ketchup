@@ -7,10 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `closable` | `closable` |             | `boolean` | `false` |
-| `disabled` | `disabled` |             | `boolean` | `false` |
+| Property   | Attribute  | Description | Type      | Default                                                                        |
+| ---------- | ---------- | ----------- | --------- | ------------------------------------------------------------------------------ |
+| `closable` | `closable` |             | `boolean` | `false`                                                                        |
+| `custom`   | `custom`   |             | `boolean` | `false`                                                                        |
+| `disabled` | `disabled` |             | `boolean` | `false`                                                                        |
+| `iconUrl`  | `icon-url` |             | `string`  | `'https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css'` |
 
 
 ## Events
@@ -37,7 +39,7 @@
 
 ### Used by
 
- - [kup-data-table](..\kup-data-table)
+ - [kup-data-table](../kup-data-table)
 
 ### Graph
 ```mermaid

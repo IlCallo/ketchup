@@ -67,6 +67,10 @@ import {
   ElementOffset,
 } from './utils/offset';
 import {
+  KetchupRadioChangeEvent,
+  KetchupRadioElement,
+} from './components/kup-radio/kup-radio-declarations';
+import {
   KetchupTextInputEvent,
 } from './components/kup-text-input/kup-text-input-declarations';
 import {
@@ -578,25 +582,51 @@ export namespace Components {
   }
   interface KupRadio {
     /**
-    * Defaults at false. When set to true, the component will be set to 'checked'.
+    * Direction in which the radio elements must be placed
     */
-    'checked': boolean;
+    'direction': string;
     /**
-    * Defaults at false. When set to true, mixins and classes of customization are enabled.
-    */
-    'custom': boolean;
-    /**
-    * Defaults at false. When set to true, the component is disabled.
+    * Sets the radio to be disabled
     */
     'disabled': boolean;
     /**
-    * Defaults at null. When specified, its content is shown to the left of the component as a label.
+    * Chooses which field of an item object should be used to create the list and be filtered.
     */
-    'labelleft': string;
+    'displayedField': string;
     /**
-    * Defaults at null. When specified, its content is shown to the right of the component as a label.
+    * Allows to pass an initial selected item for the Radio group
     */
-    'labelright': string;
+    'initialValue': KetchupRadioElement;
+    /**
+    * Radio elements to display
+    */
+    'items': KetchupRadioElement[];
+    /**
+    * Label to describe the radio group
+    */
+    'label': string;
+    /**
+    * Radio elements value
+    */
+    'radioName': string;
+    /**
+    * Chooses which field of an item object should be used to create the list and be filtered.
+    */
+    'valueField': string;
+  }
+  interface KupRadioElement {
+    /**
+    * Specifies if the radio element is selected or not.
+    */
+    'checked': boolean;
+    /**
+    * Flag: the radio button is disabled.
+    */
+    'disabled': boolean;
+    /**
+    * Label to assign to the radio button.
+    */
+    'label': string;
   }
   interface KupTextInput {
     /**
@@ -865,6 +895,12 @@ declare global {
     new (): HTMLKupRadioElement;
   };
 
+  interface HTMLKupRadioElementElement extends Components.KupRadioElement, HTMLStencilElement {}
+  var HTMLKupRadioElementElement: {
+    prototype: HTMLKupRadioElementElement;
+    new (): HTMLKupRadioElementElement;
+  };
+
   interface HTMLKupTextInputElement extends Components.KupTextInput, HTMLStencilElement {}
   var HTMLKupTextInputElement: {
     prototype: HTMLKupTextInputElement;
@@ -914,6 +950,7 @@ declare global {
     'kup-portal-instance': HTMLKupPortalInstanceElement;
     'kup-progress-bar': HTMLKupProgressBarElement;
     'kup-radio': HTMLKupRadioElement;
+    'kup-radio-element': HTMLKupRadioElementElement;
     'kup-text-input': HTMLKupTextInputElement;
     'kup-tooltip': HTMLKupTooltipElement;
     'kup-tree': HTMLKupTreeElement;
@@ -1586,28 +1623,55 @@ declare namespace LocalJSX {
   }
   interface KupRadio extends JSXBase.HTMLAttributes<HTMLKupRadioElement> {
     /**
-    * Defaults at false. When set to true, the component will be set to 'checked'.
+    * Direction in which the radio elements must be placed
     */
-    'checked'?: boolean;
+    'direction'?: string;
     /**
-    * Defaults at false. When set to true, mixins and classes of customization are enabled.
-    */
-    'custom'?: boolean;
-    /**
-    * Defaults at false. When set to true, the component is disabled.
+    * Sets the radio to be disabled
     */
     'disabled'?: boolean;
     /**
-    * Defaults at null. When specified, its content is shown to the left of the component as a label.
+    * Chooses which field of an item object should be used to create the list and be filtered.
     */
-    'labelleft'?: string;
+    'displayedField'?: string;
     /**
-    * Defaults at null. When specified, its content is shown to the right of the component as a label.
+    * Allows to pass an initial selected item for the Radio group
     */
-    'labelright'?: string;
-    'onComponentChange'?: (event: CustomEvent<{
-      checked: boolean;
-    }>) => void;
+    'initialValue'?: KetchupRadioElement;
+    /**
+    * Radio elements to display
+    */
+    'items'?: KetchupRadioElement[];
+    /**
+    * Label to describe the radio group
+    */
+    'label'?: string;
+    /**
+    * When currently selected radio button has been changed.
+    */
+    'onKetchupRadioChanged'?: (event: CustomEvent<KetchupRadioChangeEvent>) => void;
+    /**
+    * Radio elements value
+    */
+    'radioName'?: string;
+    /**
+    * Chooses which field of an item object should be used to create the list and be filtered.
+    */
+    'valueField'?: string;
+  }
+  interface KupRadioElement extends JSXBase.HTMLAttributes<HTMLKupRadioElementElement> {
+    /**
+    * Specifies if the radio element is selected or not.
+    */
+    'checked'?: boolean;
+    /**
+    * Flag: the radio button is disabled.
+    */
+    'disabled'?: boolean;
+    /**
+    * Label to assign to the radio button.
+    */
+    'label'?: string;
   }
   interface KupTextInput extends JSXBase.HTMLAttributes<HTMLKupTextInputElement> {
     /**
@@ -1799,6 +1863,7 @@ declare namespace LocalJSX {
     'kup-portal-instance': KupPortalInstance;
     'kup-progress-bar': KupProgressBar;
     'kup-radio': KupRadio;
+    'kup-radio-element': KupRadioElement;
     'kup-text-input': KupTextInput;
     'kup-tooltip': KupTooltip;
     'kup-tree': KupTree;

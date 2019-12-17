@@ -13,13 +13,14 @@
 | --------- | --------- | ----------- | -------------- | ----------- |
 | `buttons` | --        |             | `any[]`        | `undefined` |
 | `config`  | --        |             | `ButtonConfig` | `{}`        |
+| `custom`  | `custom`  |             | `boolean`      | `false`     |
 
 
 ## Dependencies
 
 ### Depends on
 
-- [kup-button](..\kup-button)
+- [kup-button](../kup-button)
 
 ### Graph
 ```mermaid
