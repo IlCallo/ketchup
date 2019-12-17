@@ -55,12 +55,19 @@
     </v-navigation-drawer>
 
     <v-toolbar class="header" fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Ketch.UP showcase</v-toolbar-title>
-      <v-switch v-model="darkTheme" :label="`Dark Mode`"></v-switch>
-      <v-toolbar-side-icon :to="{ path: '/' }">
-        <v-icon>home</v-icon>
-      </v-toolbar-side-icon>
+      <div class="align-left">
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar-title>Ketch.UP showcase</v-toolbar-title>
+      </div>
+      <div class="align-center">
+        <img class="header-logo" src="/images/ketchup-logo.svg" />
+      </div>
+      <div class="align-right">
+        <v-switch v-model="darkTheme" :label="`Dark Mode`"></v-switch>
+        <v-toolbar-side-icon :to="{ path: '/' }">
+          <v-icon>home</v-icon>
+        </v-toolbar-side-icon>
+      </div>
     </v-toolbar>
 
     <v-content>
@@ -72,7 +79,7 @@
     </v-content>
 
     <v-footer app>
-      <span class="company-text">© Copyright 2019 - SME UP Spa</span>
+      <span class="company-text">© Copyright 2019 - SME.UP Spa</span>
     </v-footer>
   </v-app>
 </template>

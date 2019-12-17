@@ -192,8 +192,9 @@ nav.v-toolbar i.v-icon.material-icons,
 }
 
 .v-input.v-input--selection-controls.v-input--switch {
-  min-width: max-content;
+  max-width: max-content;
   padding-top: 0;
+  margin-left: auto;
 }
 
 .v-input__slot {
@@ -221,6 +222,32 @@ span.company-text {
 .v-input .accent--text {
   color: var(--main-color) !important;
   caret-color: var(--main-color) !important;
+}
+
+nav .align-left,
+nav .align-right {
+  width: calc(50% - 30px);
+  display: inline-flex;
+  align-items: center;
+}
+
+nav .align-left {
+  padding-left: 24px;
+}
+
+nav .align-right {
+  padding-right: 24px;
+}
+
+nav .align-center,
+nav .align-center img {
+  height: 30px;
+  width: 30px;
+  margin: auto;
+}
+
+div.v-toolbar__content {
+  padding: 0;
 }
 
 /* Navigation menu and content */
@@ -375,6 +402,10 @@ h1.team-title {
 
   .team-member {
     display: block;
+  }
+
+  .header-logo {
+    display: none;
   }
 }
 
