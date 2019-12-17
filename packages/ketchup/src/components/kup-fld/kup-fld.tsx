@@ -1,9 +1,19 @@
-import { Component, Event, EventEmitter, Method, Prop, State, Watch, h } from '@stencil/core';
-import { generateUniqueId } from "../../utils/utils";
-import { KetchupFldChangeEvent, KetchupFldSubmitEvent } from "./kup-fld-declarations";
-import {KetchupTextInputEvent} from "../kup-text-input/kup-text-input-declarations";
-import {KetchupRadioChangeEvent} from "../kup-radio/kup-radio-declarations";
-import {KetchupComboEvent} from "../kup-combo/kup-combo-declarations";
+import {
+    Component,
+    Event,
+    EventEmitter,
+    Method,
+    Prop,
+    State,
+    Watch,
+    h,
+} from '@stencil/core';
+import {
+    KetchupFldChangeEvent,
+    KetchupFldSubmitEvent,
+} from './kup-fld-declarations';
+import { KetchupTextInputEvent } from '../kup-text-input/kup-text-input-declarations';
+import { KetchupComboEvent } from '../kup-combo/kup-combo-declarations';
 
 @Component({
     tag: 'kup-fld',
@@ -87,7 +97,6 @@ export class KupFld {
     } = {};
 
     //-- Not reactive --
-    radioGeneratedName = generateUniqueId('value');
     currentValue: object | string = null;
     previousValue: object | string = null;
 
@@ -129,11 +138,7 @@ export class KupFld {
     //---- Methods ----
 
     // When a change or update event must be launched as if it's coming from the Fld itself
-    onChange(
-        event: CustomEvent<
-            KetchupTextInputEvent | KetchupRadioChangeEvent | KetchupComboEvent
-        >
-    ) {
+    onChange(event: CustomEvent<KetchupTextInputEvent | KetchupComboEvent>) {
         const { value, info } = event.detail;
         this.ketchupFldChanged.emit({
             originalEvent: event,
@@ -146,11 +151,7 @@ export class KupFld {
     }
 
     // When a submit event must be launched as if it's coming from the Fld itself
-    onSubmit(
-        event: CustomEvent<
-            KetchupTextInputEvent | KetchupRadioChangeEvent | KetchupComboEvent
-        >
-    ) {
+    onSubmit(event: CustomEvent<KetchupTextInputEvent | KetchupComboEvent>) {
         this.ketchupFldSubmit.emit({
             originalEvent: event,
             value: this.currentValue,
@@ -251,23 +252,17 @@ export class KupFld {
                 confObj.onKetchupComboSelected = this.onChangeInstance;
                 type = 'combo';
                 break;
-            case 'rad':
-                confObj.valueField = 'obj';
-                confObj.radioName = this.radioGeneratedName; // TODO this must be changed to use a proper data field
-                confObj.onKetchupRadioChanged = this.onChangeInstance;
-                type = 'radio';
-                break;
             case 'itx':
                 confObj.onKetchupTextInputUpdated = this.onChangeInstance;
                 // When FLD has the text form, it should submit also when a user presses Enter on the text field
                 confObj.onKetchupTextInputSubmit = this.onSubmitInstance;
                 type = 'text-input';
                 break;
-                /**/
+            /**/
             case 'fup':
-                    type = 'upload';
-                    //TODO ???
-                   //TODO confObj.formDataName:'WTX_FILE' -> no, usare il nome del campo: "id": "TPLFLD"
+                type = 'upload';
+                //TODO ???
+                //TODO confObj.formDataName:'WTX_FILE' -> no, usare il nome del campo: "id": "TPLFLD"
                 /*
                 compPrefix = '';
                 type = 'vaadin-upload';
@@ -277,8 +272,8 @@ export class KupFld {
                 type ='input';
                 confObj.type = 'file';
                 */
-               break;
-            }
+                break;
+        }
 
         const $DynamicComponent = (compPrefix + type) as any; // TODO check if there is a better typing
         /** ... -> spread operator */

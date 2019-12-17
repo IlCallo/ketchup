@@ -1,0 +1,26 @@
+@import '@material/radio/mdc-radio';
+@import '@material/form-field/mdc-form-field';
+
+.kup-radio {
+  // The group containing the radio buttons. Uses a ul element
+  &__group {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+
+    // When items are displayed horizontally
+    &#{&}--horizontal {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  & .mdc-radio {
+    @include mdc-radio-unchecked-stroke-color(red);
+    @include mdc-radio-checked-stroke-color(blue);
+    @include mdc-radio-ink-color(purple);
+    @include mdc-radio-disabled-unchecked-stroke-color(pink);
+    @include mdc-radio-disabled-checked-stroke-color(orange);
+  }
+}
