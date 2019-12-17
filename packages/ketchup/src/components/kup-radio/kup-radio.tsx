@@ -100,6 +100,10 @@ export class KupRadio {
             componentClass += ' mdc-radio--disabled';
         }
 
+        if (this.checked) {
+            componentClass += ' mdc-radio--checked';
+        }
+
         if (this.labelleft) {
             formClass += ' mdc-form-field--align-end';
             componentLabel = this.labelleft;
@@ -110,10 +114,11 @@ export class KupRadio {
         return (
             <Host checked={this.checked}>
                 <div class={formClass}>
-                    <div id="radio-wrapper" class={componentClass}>
+                    <div class={componentClass}>
                         <input
                             class="mdc-radio__native-control"
                             type="radio"
+                            id="radio-id"
                             checked={this.checked}
                             disabled={this.disabled}
                             onChange={this.onComponentChange.bind(this)}
@@ -124,7 +129,7 @@ export class KupRadio {
                         </div>
                         <div class="mdc-radio__ripple"></div>
                     </div>
-                    <label htmlFor="radio-wrapper">{componentLabel}</label>
+                    <label htmlFor="radio-id">{componentLabel}</label>
                 </div>
             </Host>
         );
