@@ -104,10 +104,6 @@ export class KupCheckbox {
             componentClass += ' mdc-checkbox--disabled';
         }
 
-        if (this.checked) {
-            componentClass += ' mdc-checkbox--checked';
-        }
-
         if (this.labelleft) {
             formClass += ' mdc-form-field--align-end';
             componentLabel = this.labelleft;

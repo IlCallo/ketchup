@@ -598,28 +598,6 @@ export namespace Components {
     */
     'labelright': string;
   }
-  interface KupSwitch {
-    /**
-    * Defaults at false. When set to true, the component will be set to 'checked'.
-    */
-    'checked': boolean;
-    /**
-    * Defaults at false. When set to true, mixins and classes of customization are enabled.
-    */
-    'custom': boolean;
-    /**
-    * Defaults at false. When set to true, the component is disabled.
-    */
-    'disabled': boolean;
-    /**
-    * Defaults at null. When specified, its content is shown to the left of the component as a label.
-    */
-    'labelleft': string;
-    /**
-    * Defaults at null. When specified, its content is shown to the right of the component as a label.
-    */
-    'labelright': string;
-  }
   interface KupTextInput {
     /**
     * Set the amount of time, in milliseconds, to wait to trigger the `ketchupTextInputUpdated` event after each keystroke.
@@ -887,12 +865,6 @@ declare global {
     new (): HTMLKupRadioElement;
   };
 
-  interface HTMLKupSwitchElement extends Components.KupSwitch, HTMLStencilElement {}
-  var HTMLKupSwitchElement: {
-    prototype: HTMLKupSwitchElement;
-    new (): HTMLKupSwitchElement;
-  };
-
   interface HTMLKupTextInputElement extends Components.KupTextInput, HTMLStencilElement {}
   var HTMLKupTextInputElement: {
     prototype: HTMLKupTextInputElement;
@@ -942,7 +914,6 @@ declare global {
     'kup-portal-instance': HTMLKupPortalInstanceElement;
     'kup-progress-bar': HTMLKupProgressBarElement;
     'kup-radio': HTMLKupRadioElement;
-    'kup-switch': HTMLKupSwitchElement;
     'kup-text-input': HTMLKupTextInputElement;
     'kup-tooltip': HTMLKupTooltipElement;
     'kup-tree': HTMLKupTreeElement;
@@ -1638,31 +1609,6 @@ declare namespace LocalJSX {
       checked: boolean;
     }>) => void;
   }
-  interface KupSwitch extends JSXBase.HTMLAttributes<HTMLKupSwitchElement> {
-    /**
-    * Defaults at false. When set to true, the component will be set to 'checked'.
-    */
-    'checked'?: boolean;
-    /**
-    * Defaults at false. When set to true, mixins and classes of customization are enabled.
-    */
-    'custom'?: boolean;
-    /**
-    * Defaults at false. When set to true, the component is disabled.
-    */
-    'disabled'?: boolean;
-    /**
-    * Defaults at null. When specified, its content is shown to the left of the component as a label.
-    */
-    'labelleft'?: string;
-    /**
-    * Defaults at null. When specified, its content is shown to the right of the component as a label.
-    */
-    'labelright'?: string;
-    'onComponentChange'?: (event: CustomEvent<{
-      checked: boolean;
-    }>) => void;
-  }
   interface KupTextInput extends JSXBase.HTMLAttributes<HTMLKupTextInputElement> {
     /**
     * Set the amount of time, in milliseconds, to wait to trigger the `ketchupTextInputUpdated` event after each keystroke.
@@ -1853,7 +1799,6 @@ declare namespace LocalJSX {
     'kup-portal-instance': KupPortalInstance;
     'kup-progress-bar': KupProgressBar;
     'kup-radio': KupRadio;
-    'kup-switch': KupSwitch;
     'kup-text-input': KupTextInput;
     'kup-tooltip': KupTooltip;
     'kup-tree': KupTree;
